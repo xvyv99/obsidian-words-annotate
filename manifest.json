@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
+	"id": "obsidian-words-annotate",
+	"name": "Words Annotate",
+	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "To label the meaning of words you don't know.",
+	"author": "xvyv99",
+	"authorUrl": "http://www.xvyv99.top",
+	"fundingUrl": "http://www.xvyv99.top/funding",
 	"isDesktopOnly": false
 }

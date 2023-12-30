@@ -1,3 +1,5 @@
+import esbuildSvelte from "esbuild-svelte";
+import sveltePreprocess from "svelte-preprocess";
 import esbuild from "esbuild";
 import process from "process";
 import builtins from "builtin-modules";
@@ -15,7 +17,7 @@ const context = await esbuild.context({
 	banner: {
 		js: banner,
 	},
-	entryPoints: ["main.ts"],
+	entryPoints: ["src/main.ts"],
 	bundle: true,
 	external: [
 		"obsidian",
@@ -32,13 +34,32 @@ const context = await esbuild.context({
 		"@lezer/highlight",
 		"@lezer/lr",
 		...builtins],
+
 	format: "cjs",
-	target: "es2018",
+	target: "es2020",
 	logLevel: "info",
 	sourcemap: prod ? false : "inline",
 	treeShaking: true,
 	outfile: "main.js",
+	plugins: [
+		esbuildSvelte({
+		  compilerOptions: { css: 'injected' },
+		  preprocess: sveltePreprocess(),
+		}),
+	  ],
 });
+
+esbuild
+ .build({
+   plugins: [
+     esbuildSvelte({
+       compilerOptions: { css: true },
+       preprocess: sveltePreprocess(),
+     }),
+   ],
+   // ...
+ })
+ .catch(() => process.exit(1));
 
 if (prod) {
 	await context.rebuild();
