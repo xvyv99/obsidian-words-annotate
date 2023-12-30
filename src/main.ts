@@ -65,7 +65,7 @@ export default class Words extends Plugin {
     this.addCommand({
       id: "annotate-word",
       name: "Annotate word",
-      hotkeys: [{ modifiers: [], key: "F4" }],
+      //hotkeys: [{ modifiers: [], key: "F4" }],
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
         new PostMeaning(this.app, selection).open();
@@ -76,7 +76,7 @@ export default class Words extends Plugin {
     this.addCommand({
       id: "find-word",
       name: "Find word",
-      hotkeys: [{ modifiers: [], key: "F5" }],
+      //hotkeys: [{ modifiers: [], key: "F5" }],
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
         new GetMeaning(this.app, selection).open();
