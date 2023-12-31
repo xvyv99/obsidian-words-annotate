@@ -1,6 +1,7 @@
 # Word Annotate
 
 [English](README.md) [简体中文](README-zh.md)
+
 Words Annotate是一个旨在帮助用户标注他们不熟悉的单词意思的插件.它提供了一种方便的方式来标注和存储未知单词的定义.
 
 ## 使用方法
@@ -9,9 +10,13 @@ Words Annotate是一个旨在帮助用户标注他们不熟悉的单词意思的
 
 #### 标注词语
 
+![Annotate word](/gifs/Annotate_word.gif)
+
 选中想要标注的词, 使用`Annotate word`命令, 在弹出的窗口输入以进行标注.
 
 #### 查询词语
+
+![Find word](/gifs/Find_word.gif)
 
 选中想要查询的词, 使用`Find word`命令, 在弹出的窗口可查看该词的意义(如果该词已被标注的话).
 

@@ -7,9 +7,13 @@ Words Annotate is a plugin designed to help users label the meaning of words the
 
 ### Input meaning
 
+![Annotate word](/gifs/Annotate_word.gif)
+
 To label the meaning of a word, first select the word you want to annotate, and then use the command "Annotate word".
 
 ### Get meaning
+
+![Find word](/gifs/Find_word.gif)
 
 To retrieve the meaning of a word, use the command "Find word".
 
