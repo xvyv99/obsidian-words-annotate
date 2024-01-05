@@ -42,7 +42,7 @@ export default class Words extends Plugin {
     const { adapter } = this.app.vault;
     if (!await adapter.exists(path)) {
       console.log("Fail to found word data.Try to create it.");
-      await adapter.write(path, "[]");
+      await adapter.write(path, "{}");
     }
     //数据文件存在性判断
 
@@ -65,7 +65,7 @@ export default class Words extends Plugin {
     this.addCommand({
       id: "annotate-word",
       name: "Annotate word",
-      //hotkeys: [{ modifiers: [], key: "F4" }],
+      hotkeys: [{ modifiers: [], key: "F4" }],
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
         new PostMeaning(this.app, selection).open();
@@ -76,7 +76,7 @@ export default class Words extends Plugin {
     this.addCommand({
       id: "find-word",
       name: "Find word",
-      //hotkeys: [{ modifiers: [], key: "F5" }],
+      hotkeys: [{ modifiers: [], key: "F5" }],
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
         new GetMeaning(this.app, selection).open();

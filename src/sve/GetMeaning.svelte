@@ -4,14 +4,12 @@
 	export let Sel: string; //需要查找的词语
 
 	type WordObject = {
-		Word: string;
-		Meaning: { [key: string]: string };
-		From: string;
+		[key: string] : { [key: string]: string }
 	}; //词语存储类型
 
 	let SenseMap: Map<string, string> = new Map();
-	let Data: WordObject[];
-	let ExistIndex: number;
+	let Data: WordObject;
+	let WordExist: boolean;
 	const { adapter } = Vault; //读写接口
 
 	init();
@@ -20,15 +18,16 @@
 
 	async function init() {
 		Data = JSON.parse(await adapter.read(Path));
-		ExistIndex = Data.findIndex((obj) => obj.Word == Sel);
-		
-		SenseMap = new Map(Object.entries(Data[ExistIndex].Meaning));
+		WordExist = Sel in Data;
+		if (WordExist) {
+			SenseMap = new Map(Object.entries(Data[Sel]));
+		}
 	}
 </script>
 
 <h2>The Meaning of the Word "<span class="highlight">{Sel}</span>"</h2>
 
-{#if ExistIndex==-1}
+{#if !WordExist}
 	Not found.
 {:else}
 	<ul>

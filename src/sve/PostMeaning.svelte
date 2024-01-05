@@ -5,8 +5,7 @@
 	export let Sel: string; //需要标注的词语
 
 	type WordObject = {
-		Word: string;
-		Meaning: { [key: string]: string };
+		[key: string] : { [key: string]: string }
 	}; //词语存储类型
 
 	let type: string;
@@ -24,7 +23,8 @@
 		"pron.",
 	];
 	//词性列表
-	let Data: WordObject[]; //词语数据
+	let Data: WordObject; //词语数据
+	let WordExist: boolean; //数据文件中是否已存在该词语
 
 	const { adapter } = Vault; //读写接口
 
@@ -34,9 +34,9 @@
 
 	async function init() {
 		Data = JSON.parse(await adapter.read(Path));
-		let ExistIndex = Data.findIndex((obj) => obj.Word == Sel);
-		if (ExistIndex != -1) {
-			SenseMap = new Map(Object.entries(Data[ExistIndex].Meaning));
+		WordExist = Sel in Data
+		if (WordExist) {
+			SenseMap = new Map(Object.entries(Data[Sel]));
 		} //若数据存在则转换为Map并载入
 	}
 
@@ -63,18 +63,14 @@
 			//未提交词语的意思
 		} else {
 			const SenseJsonObject: { [key: string]: string } = {};
-			const ExistIndex: number = Data.findIndex((obj) => obj.Word == Sel);
 
 			SenseMap.forEach((value: string, key: string) => {
 				SenseJsonObject[key] = value;
 			});
 			//Map转换为Javascript对象
-			if (ExistIndex != -1) {
-				Data[ExistIndex].Meaning = SenseJsonObject;
-			} else {
-				const res = { Word: Sel, Meaning: SenseJsonObject };
-				Data.push(res);
-			}
+			Data[Sel] = SenseJsonObject
+			console.log(Data)
+
 			adapter.write(Path, JSON.stringify(Data));
 			new Notice("Submit successfully!");
 		}
