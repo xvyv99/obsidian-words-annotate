@@ -155,7 +155,7 @@ export class GetMeaning extends Modal {
         props: {
           Vault: vault,
           Sel: this.Selection,
-          Path: DataPath
+          Path: DataPath,
         }
       });
     }
